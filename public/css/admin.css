@@ -1,0 +1,130 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styling dasar untuk body dan teks */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Flex container untuk sidebar dan konten utama */
+.flex {
+    display: flex;
+}
+
+/* Sidebar styling */
+aside {
+    width: 250px;
+    background-color: #2d3748;
+    color: #ffffff;
+    height: 100vh;
+    position: fixed;
+}
+
+aside .p-4 {
+    padding: 16px;
+}
+
+aside h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+aside nav {
+    margin-top: 20px;
+}
+
+aside ul {
+    list-style-type: none;
+}
+
+aside ul li {
+    padding: 10px 20px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+aside ul li:hover {
+    background-color: #4a5568;
+}
+
+aside ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+/* Main content styling */
+main {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #f7fafc;
+    min-height: 100vh;
+}
+
+main header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2d3748;
+    margin-bottom: 20px;
+}
+
+/* Cards for statistics */
+.grid {
+    display: grid;
+    gap: 20px;
+}
+
+.grid-cols-1 {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.p-4 {
+    padding: 16px;
+}
+
+.rounded {
+    border-radius: 8px;
+}
+
+.shadow {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Text styles */
+.text-lg {
+    font-size: 1.125rem;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    aside {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    main {
+        margin-left: 0;
+    }
+}
