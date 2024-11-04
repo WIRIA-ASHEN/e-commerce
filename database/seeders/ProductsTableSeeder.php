@@ -20,6 +20,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 100,
                 'stock' => 50,
                 'is_active' => 'active',
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'name' => 'Product 2',
@@ -28,6 +30,8 @@ class ProductsTableSeeder extends Seeder
                 'price' => 200,
                 'stock' => 30,
                 'is_active' => 'active',
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

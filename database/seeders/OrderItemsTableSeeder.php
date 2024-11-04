@@ -18,18 +18,24 @@ class OrderItemsTableSeeder extends Seeder
                 'product_id' => 1,
                 'quantity' => 2,
                 'price' => 100.00,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'order_id' => 1,
                 'product_id' => 2,
                 'quantity' => 1,
                 'price' => 200.00,
+                'created_at' => now(),
+                'updated_at' => now(),
             ],
             [
                 'order_id' => 2,
                 'product_id' => 1,
                 'quantity' => 1,
                 'price' => 100.00,
+                'created_at' => now(),
+                'updated_at' => now(),
             ]
         ]);
     }

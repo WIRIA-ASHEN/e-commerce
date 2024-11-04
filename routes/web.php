@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\CustomerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CustomerController;
 
 
 Route::get('/', function () {
@@ -34,7 +35,13 @@ Route::middleware(['auth'])->group(function () {
     // Grup route untuk Customer
     Route::middleware('role:customer')->group(function () {
         Route::get('customer/dashboard', [CustomerController::class, 'index'])->name('customer.dashboard');
+        Route::get('/cart', [CustomerController::class, 'cart'])->name('cart');
+        Route::post('/cart/add/{id}', [CustomerController::class, 'add'])->name('cart.add');
+        Route::delete('/cart/remove/{id}', [CustomerController::class, 'remove'])->name('cart.remove');
+        Route::get('/checkout', [CustomerController::class, 'checkout'])->name('checkout');
+        Route::get('/orders', [CustomerController::class, 'orders'])->name('orders');
+        Route::post('/payment/{order}', [PaymentController::class, 'createPayment']);
+        Route::post('/payment/notification', [PaymentController::class, 'notification']);
 
     });
-
 });
