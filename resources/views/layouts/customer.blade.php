@@ -5,9 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title') - E-Commerce</title>
-    <!-- Midtrans Snap.js -->
-    <script type="text/javascript" src="https://app.sandbox.midtrans.com/snap/snap.js"
-        data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
+    <script type="text/javascript" src="https://app.stg.midtrans.com/snap/snap.js"
+        data-client-key="{{ config('midtrans.clientKey') }}"></script>
+    <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
     <link rel="stylesheet" href="{{ asset('css/customer.css') }}">
 </head>
 
@@ -15,7 +21,7 @@
     <header>
         <nav>
             <a href="{{ route('customer.dashboard') }}">Home</a>
-            <a href="{{ route('orders') }}">Orders</a>
+            {{-- <a href="{{ route('orders') }}">Orders</a> --}}
             <a href="{{ route('cart') }}">Cart ({{ session('cart') ? count(session('cart')) : 0 }})</a>
         </nav>
     </header>
@@ -28,8 +34,13 @@
         <p>&copy; {{ date('Y') }} E-Commerce. All rights reserved.</p>
     </footer>
 
-    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
-    @yield('script')
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.clientKey') }}"></script>
+    @yield('scripts')
 </body>
 
 </html>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Midtrans\Snap;
+use Midtrans\Config;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\OrderItem;
@@ -9,6 +11,8 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+
+
     public function index()
     {
         $products = Product::all();
@@ -17,12 +21,27 @@ class CustomerController extends Controller
 
     public function orders()
     {
-        $orders = Order::with('orderItems.product')
+        // Retrieve the most recent order for the authenticated user
+        $order = Order::with('orderItems.product')
             ->where('user_id', auth()->id())
-            ->get();
+            ->latest()
+            ->first();
 
-        return view('customer.orders', compact('orders'));
+        // Check if the session token exists
+        if (!$order || !session('snapToken')) {
+            // If there's no order or the session token is missing, delete the order if it exists
+            // if ($order) {
+            //     $order->delete();
+            // }
+
+            // Redirect to the orders page with a message
+            return redirect()->route('orders')->with('message', 'Order has been removed due to missing payment token.');
+        }
+
+        return view('customer.orders', compact('order'));
     }
+
+
 
     public function cart()
     {
@@ -75,17 +94,17 @@ class CustomerController extends Controller
         $cart = session()->get('cart', []);
 
         if (empty($cart)) {
-            return redirect()->route('cart')->with('error', 'Your cart is empty!');
+            return redirect()->route('cart')->with('error', 'Keranjang Anda kosong!');
         }
 
-        // Create a new order
+        // Membuat order baru
         $order = Order::create([
             'user_id' => auth()->id(),
             'total' => array_sum(array_column($cart, 'total')),
             'status' => 'pending'
         ]);
 
-        // Add each cart item to the order items table
+        // Menambahkan setiap item keranjang ke tabel order_items
         foreach ($cart as $id => $item) {
             OrderItem::create([
                 'order_id' => $order->id,
@@ -95,9 +114,42 @@ class CustomerController extends Controller
             ]);
         }
 
-        // Clear the cart session
+        // Menghapus session keranjang
         session()->forget('cart');
 
-        return redirect()->route('orders')->with('success', 'Order placed successfully!');
+        // Dapatkan Snap Token dari Midtrans
+        $snapToken = $order->getSnapToken();
+
+        // Arahkan ke halaman order dan kirim token untuk digunakan di view
+        return redirect()->route('orders')->with([
+            'success' => 'Order berhasil dibuat!',
+            'snapToken' => $snapToken
+        ]);
     }
+
+    public function paymentSuccess()
+    {
+        // Retrieve the most recent order for the authenticated user
+        $order = Order::where('user_id', auth()->id())->latest()->first();
+
+        // Check if the order exists
+        if ($order) {
+            // Update the order status
+            $order->update(['status' => 'paid']);
+
+            // Loop through each order item to decrease the stock
+            foreach ($order->orderItems as $item) {
+                // Find the product by its ID and decrease the stock
+                $product = $item->product;
+                $product->decrement('stock', $item->quantity); // Adjust stock by the quantity ordered
+            }
+
+            return redirect()->route('customer.dashboard')->with('success', 'Pembayaran berhasil!');
+        }
+
+        return redirect()->route('customer.dashboard')->with('error', 'Order not found!');
+    }
+
+
+
 }

@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->decimal('total', 15, 2);
             $table->enum('status', ['pending', 'paid', 'failed']);
+            $table->string('snaptoken')->nullable();
             $table->timestamps();
         });
     }

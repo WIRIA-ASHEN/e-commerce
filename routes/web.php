@@ -40,8 +40,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/cart/remove/{id}', [CustomerController::class, 'remove'])->name('cart.remove');
         Route::get('/checkout', [CustomerController::class, 'checkout'])->name('checkout');
         Route::get('/orders', [CustomerController::class, 'orders'])->name('orders');
-        Route::post('/payment/{order}', [PaymentController::class, 'createPayment']);
-        Route::post('/payment/notification', [PaymentController::class, 'notification']);
+        // Route::get('/order/pay/{id}', [CustomerController::class, 'pay'])->name('order.pay');
+        Route::get('/payment/success', [CustomerController::class, 'paymentSuccess'])->name('payment.success');
 
     });
 });

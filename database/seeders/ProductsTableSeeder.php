@@ -14,25 +14,45 @@ class ProductsTableSeeder extends Seeder
     {
         DB::table('products')->insert([
             [
-                'name' => 'Product 1',
+                'name' => 'TV',
                 'gambar' => 'gambar1.jpg',
-                'description' => 'Description of Product 1',
-                'price' => 100,
+                'description' => 'Polytron HD',
+                'price' => 2000000,
                 'stock' => 50,
                 'is_active' => 'active',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'name' => 'Product 2',
+                'name' => 'LAPTOP',
                 'gambar' => 'gambar2.jpg',
-                'description' => 'Description of Product 2',
-                'price' => 200,
+                'description' => 'Lenovo',
+                'price' => 15000000,
                 'stock' => 30,
                 'is_active' => 'active',
                 'created_at' => now(),
                 'updated_at' => now(),
-            ]
+            ],
+            [
+                'name' => 'IPHONE',
+                'gambar' => 'gambar2.jpg',
+                'description' => 'IPHONE 16 PRO MAX',
+                'price' => 20000000,
+                'stock' => 0,
+                'is_active' => 'active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'MONITOR',
+                'gambar' => 'gambar2.jpg',
+                'description' => 'LOGITECH',
+                'price' => 2000000,
+                'stock' => 0,
+                'is_active' => 'inactive',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
         ]);
     }
 }
