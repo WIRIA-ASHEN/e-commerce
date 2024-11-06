@@ -13,9 +13,6 @@ class Product extends Model
         'name', 'gambar', 'description', 'price', 'stock', 'is_active',
     ];
 
-    /**
-     * Relasi ke tabel order_items.
-     */
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);

@@ -12,7 +12,7 @@
             </div>
         @endif
 
-        @if (!$order) <!-- Check if there is an order -->
+        @if (!$order) 
             <p>You have no orders.</p>
         @else
             <div class="card my-4">

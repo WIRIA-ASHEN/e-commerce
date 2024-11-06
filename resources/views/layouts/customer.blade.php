@@ -19,12 +19,20 @@
 
 <body>
     <header>
-        <nav>
-            <a href="{{ route('customer.dashboard') }}">Home</a>
-            {{-- <a href="{{ route('orders') }}">Orders</a> --}}
-            <a href="{{ route('cart') }}">Cart ({{ session('cart') ? count(session('cart')) : 0 }})</a>
+        <nav class="d-flex justify-content-between align-items-center">
+            <div>
+                <a href="{{ route('customer.dashboard') }}">Home</a>
+                <a href="{{ route('cart') }}">Cart ({{ session('cart') ? count(session('cart')) : 0 }})</a>
+            </div>
+            <div>
+                <form action="{{ route('logout') }}" method="post" class="d-inline">
+                    @csrf
+                    <button type="submit" class="btn text-white p-0 mt-0">Logout</button>
+                </form>
+            </div>
         </nav>
     </header>
+
 
     <main>
         @yield('content')
@@ -39,7 +47,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.clientKey') }}"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.clientKey') }}">
+    </script>
     @yield('scripts')
 </body>
 

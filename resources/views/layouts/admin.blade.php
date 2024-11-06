@@ -10,13 +10,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 
     <title>@yield('title') - Admin Panel</title>
-    <!-- Custom CSS link -->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
 </head>
 
 <body>
     <div class="flex">
-        <!-- Sidebar -->
         <aside class="w-64 bg-gray-800 h-screen text-white">
             <div class="p-4">
                 <h2 class="text-2xl font-bold">Admin</h2>
@@ -30,12 +28,6 @@
                         <a href="{{ route('admin.produk.index') }}">Manage Products</a>
                     </li>
                     <li class="px-4 py-2 hover:bg-gray-700">
-                        <a href="#">Orders</a>
-                    </li>
-                    <li class="px-4 py-2 hover:bg-gray-700">
-                        <a href="#">Users</a>
-                    </li>
-                    <li class="px-4 py-2 hover:bg-gray-700">
                         <form action="{{ route('logout') }}" method="post">
                             @csrf
                             <button type="submit" class="btn btn-link text-white p-0">Logout</button>
@@ -45,7 +37,6 @@
             </nav>
         </aside>
 
-        <!-- Main Content -->
         <main class="flex-1 bg-gray-100 h-screen p-6">
             <header class="mb-4">
                 <h1 class="text-3xl font-semibold">@yield('title')</h1>
@@ -57,13 +48,11 @@
         </main>
     </div>
 
-    <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
 
-    <!-- Yield scripts for page-specific JavaScript -->
     @yield('scripts')
 </body>
 

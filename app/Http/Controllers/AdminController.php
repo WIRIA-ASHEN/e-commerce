@@ -37,7 +37,6 @@ class AdminController extends Controller
             'description' => 'required',
             'price' => 'required|integer',
             'stock' => 'required|integer',
-            // 'is_active' => 'nullable|boolean', // 'nullable' allows checkbox unchecked state
         ]);
 
         // Upload the image
@@ -69,10 +68,8 @@ class AdminController extends Controller
             'description' => 'required',
             'price' => 'required|numeric',
             'stock' => 'required|integer',
-            // 'is_active' => 'required|boolean',
         ]);
 
-        // Upload new image if provided
         if ($request->hasFile('gambar')) {
             $imagePath = $request->file('gambar')->store('images', 'public');
             $product->gambar = $imagePath;
@@ -97,11 +94,9 @@ class AdminController extends Controller
 
     public function toggleStatus(Product $product)
     {
-        // Toggle the status
         $product->is_active = $product->is_active === 'active' ? 'inactive' : 'active';
         $product->save();
 
-        // Return the new status as JSON
         return response()->json(['is_active' => $product->is_active]);
     }
 

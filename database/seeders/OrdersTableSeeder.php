@@ -14,7 +14,7 @@ class OrdersTableSeeder extends Seeder
     {
         DB::table('orders')->insert([
             [
-                'user_id' => 2, // Assuming Customer User has ID 2
+                'user_id' => 2, 
                 'total' => 300,
                 'status' => 'pending',
                 'created_at' => now(),

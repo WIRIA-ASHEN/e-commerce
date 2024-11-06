@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Admin User',
             'email' => 'admin1@example.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('password'), // Use a secure password
+            'password' => Hash::make('password'), 
             'role' => 'admin',
             'remember_token' => \Str::random(10),
             'created_at' => now(),
@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'name' => 'Customer User',
             'email' => 'customer1@example.com',
             'email_verified_at' => now(),
-            'password' => Hash::make('password'), // Use a secure password
+            'password' => Hash::make('password'), 
             'role' => 'customer',
             'remember_token' => \Str::random(10),
             'created_at' => now(),
