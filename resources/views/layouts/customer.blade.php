@@ -21,8 +21,8 @@
     <header>
         <nav class="d-flex justify-content-between align-items-center">
             <div>
-                <a href="{{ route('customer.dashboard') }}">Home</a>
-                <a href="{{ route('cart') }}">Cart ({{ session('cart') ? count(session('cart')) : 0 }})</a>
+                <a href="{{ route('customer.dashboard') }}">Beranda</a>
+                <a href="{{ route('cart') }}">Keranjang ({{ session('cart') ? count(session('cart')) : 0 }})</a>
             </div>
             <div>
                 <form action="{{ route('logout') }}" method="post" class="d-inline">

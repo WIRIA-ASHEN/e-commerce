@@ -1,17 +1,17 @@
 @extends('layouts.customer')
 
-@section('title', 'Shopping Cart')
+@section('title', 'Keranjang Belanja')
 
 @section('content')
-    <h1>Shopping Cart</h1>
+    <h1>Keranjang Belanja</h1>
 
     @if (session('cart') && count(session('cart')) > 0)
         <table>
             <thead>
                 <tr>
-                    <th>Image</th>
-                    <th>Product</th>
-                    <th>Price</th>
+                    <th>Gambar</th>
+                    <th>Produk</th>
+                    <th>Harga</th>
                     <th>Quantity</th>
                     <th>Total</th>
                     <th>Action</th>
@@ -33,7 +33,7 @@
                             <form action="{{ route('cart.remove', $id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Remove</button>
+                                <button type="submit" class="btn btn-danger">Hapus</button>
                             </form>
                         </td>
                     </tr>
@@ -44,10 +44,10 @@
         <p class="mt-4">Total: Rp {{ number_format(array_sum(array_column(session('cart'), 'total')), 0, ',', '.') }}</p>
 
         <div class="d-flex justify-content-between">
-            <a href="{{ route('checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
-            <a href="{{ route('customer.dashboard') }}" class="btn btn-warning">Add Shop</a>
+            <a href="{{ route('checkout') }}" class="btn btn-primary">Checkout</a>
+            <a href="{{ route('customer.dashboard') }}" class="btn btn-warning">Tambah Keranjang</a>
         </div>
     @else
-        <p>Your cart is empty.</p>
+        <p>Keranjang anda kosong</p>
     @endif
 @endsection

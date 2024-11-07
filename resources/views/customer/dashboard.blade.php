@@ -1,9 +1,9 @@
 @extends('layouts.customer')
 
-@section('title', 'Home')
+@section('title', 'Beranda')
 
 @section('content')
-    <h1>All Products</h1>
+    <h1>Semua Produk</h1>
 
     <div class="products">
         @foreach ($products as $product)
@@ -18,10 +18,10 @@
                     @if ($product->stock > 0)
                         <form action="{{ route('cart.add', $product->id) }}" method="POST">
                             @csrf
-                            <button type="submit">Add to Cart</button>
+                            <button type="submit">Tambah keranjang</button>
                         </form>
                     @else
-                        <button type="button" class="btn btn-secondary" disabled>Out of Stock</button>
+                        <button type="button" class="btn btn-secondary mt-3" disabled>Stok Habis</button>
                     @endif
                 </div>
             @endif
